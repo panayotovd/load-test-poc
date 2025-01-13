@@ -7,12 +7,14 @@
       "test": "k6 run tests/smoke/smokeTestBooks.js",
       "compare": "node scripts/compareResults.js",
       "update-baseline": "node scripts/updateBaseline.js",
-      "generate-report": "node scripts/generateReport.js"
+      "generate-report": "node scripts/generateReport.js",
+      "run-smoke": "node scripts/runSmokeTests.js"
     },
-    "author": "Your Name",
-    "license": "MIT",
+    "author": "Danny",
+    "license": "-",
     "dependencies": {
       "fs-extra": "^11.1.1"
     },
     "devDependencies": {}
-  }
+
+}

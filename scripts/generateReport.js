@@ -1,4 +1,6 @@
 // 📂 scripts/generateReport.js
+const fs = require('fs');
+
 const reportData = JSON.parse(fs.readFileSync('./results/latestResults.json'));
 
 const reportHtml = `
