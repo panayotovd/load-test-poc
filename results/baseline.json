@@ -1,0 +1,17 @@
+// 📂 results/baseline.json
+{
+    "endpoints": {
+      "/api/v1/Books": {
+        "avg_response_time": 500,
+        "p95_response_time": 800
+      },
+      "/api/v1/Users": {
+        "avg_response_time": 600,
+        "p95_response_time": 900
+      },
+      "/api/v1/Activities": {
+        "avg_response_time": 550,
+        "p95_response_time": 850
+      }
+    }
+  }

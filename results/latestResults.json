@@ -1,0 +1,17 @@
+// 📂 results/latestResults.json
+{
+    "timestamp": "2025-01-13T12:00:00Z",
+    "metrics": {
+      "http_req_duration": {
+        "avg": 450,
+        "min": 120,
+        "max": 2000,
+        "p(95)": 750
+      },
+      "http_req_failed": {
+        "rate": 0.01
+      }
+    },
+    "status": "pass",
+    "notes": "All endpoints met the performance thresholds."
+  }
