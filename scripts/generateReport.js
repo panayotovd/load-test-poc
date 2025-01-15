@@ -1,8 +1,75 @@
-// 📂 scripts/generateReport.js
 const fs = require('fs');
+const path = require('path');
 
-const reportData = JSON.parse(fs.readFileSync('./results/latestResults.json'));
+const executionDate = new Date().toLocaleString();
+let reportSections = '';
 
+// Dynamically find all result JSON files in the results folder, excluding latestResults.json
+function getResultFiles(dir) {
+  return fs.readdirSync(dir)
+    .filter(file => file.endsWith('Results.json') && file !== 'latestResults.json')
+    .map(file => path.join(dir, file));
+}
+
+const resultFiles = getResultFiles('./results');
+
+if (resultFiles.length === 0) {
+  console.error('❌ No result files found in ./results. Run tests before generating the report.');
+  process.exit(1);
+}
+
+resultFiles.forEach(filePath => {
+  try {
+    const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    const endpointName = path.basename(filePath, 'Results.json');
+
+    // Safely handle missing or undefined metrics
+    const avgResponseTime = data.metrics?.http_req_duration?.avg ?? 'N/A';
+    const percentile95 = data.metrics?.http_req_duration?.['p(95)'] ?? 'N/A';
+    const maxResponseTime = data.metrics?.http_req_duration?.max ?? 'N/A';
+    const errorRateRaw = data.metrics?.http_req_failed?.rate;
+    const errorRate = isNaN(errorRateRaw) || errorRateRaw === undefined ? 0 : (errorRateRaw * 100).toFixed(2);
+
+    // Determine pass/fail based on error rate
+    const status = errorRate <= 1 ? 'PASS' : 'FAIL';
+    const statusClass = errorRate <= 1 ? 'pass' : 'fail';
+
+    reportSections += `
+      <h2>Endpoint: ${endpointName}</h2>
+      <table>
+          <tr>
+              <th>Metric</th>
+              <th>Value</th>
+          </tr>
+          <tr>
+              <td>Average Response Time (ms)</td>
+              <td>${avgResponseTime.toFixed(2)}</td>
+          </tr>
+          <tr>
+              <td>95th Percentile (ms)</td>
+              <td>${percentile95.toFixed(2)}</td>
+          </tr>
+          <tr>
+              <td>Max Response Time (ms)</td>
+              <td>${maxResponseTime.toFixed(2)}</td>
+          </tr>
+          <tr>
+              <td>Error Rate (%)</td>
+              <td>${errorRate}%</td>
+          </tr>
+          <tr class="${statusClass}">
+              <td>Status</td>
+              <td>${status}</td>
+          </tr>
+      </table>
+      <hr>
+    `;
+  } catch (error) {
+    console.error(`❌ Failed to process result file: ${filePath}`, error.message);
+  }
+});
+
+// Generate dynamic HTML report
 const reportHtml = `
 <!DOCTYPE html>
 <html lang="en">
@@ -13,26 +80,19 @@ const reportHtml = `
         body { font-family: Arial, sans-serif; margin: 20px; }
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
-        th { background-color:rgb(0, 0, 0); }
-        .pass { background-color:rgb(51, 148, 74); }
-        .fail { background-color:rgb(205, 23, 38); }
+        th { background-color: #f4f4f4; }
+        .pass { background-color: #d4edda; }
+        .fail { background-color: #f8d7da; }
     </style>
 </head>
 <body>
     <h1>API Load Test Report</h1>
-    <table>
-        <tr>
-            <th>Metric</th>
-            <th>Average (ms)</th>
-            <th>95th Percentile (ms)</th>
-        </tr>
-        <tr>
-            <td>Response Time</td>
-            <td>${reportData.metrics.http_req_duration.avg}</td>
-            <td>${reportData.metrics.http_req_duration["p(95)"]}</td>
-        </tr>
-    </table>
-    <p>Status: ${reportData.status}</p>
+    <p><strong>Date of Execution:</strong> ${executionDate}</p>
+    ${reportSections}
 </body>
 </html>
 `;
+
+// Write the dynamic report to an HTML file
+fs.writeFileSync('./results/report.html', reportHtml);
+console.log('📊 Dynamic HTML report generated successfully for all endpoints.');

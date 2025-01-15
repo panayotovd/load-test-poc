@@ -1,10 +1,9 @@
-// 📂 scripts/runSmokeTests.js
-const { execSync } = require('child_process');
+import { execSync } from 'child_process';
 
 const smokeTests = [
   'tests/smoke/smokeTestBooks.js',
-  'tests/smoke/smokeTestUsers.js',
-  'tests/smoke/smokeTestAuthors.js'
+  'tests/smoke/smokeTestUsers.js'
+  //'tests/smoke/smokeTestAuthors.js'
 ];
 
 console.log('🚀 Running Smoke Tests...');

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,43 +6,103 @@
     <title>API Load Test Report</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; }
-        h1 { color: #000000; }
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
-        th { background-color: #ffffff; }
-        .pass { background-color: #089128; }
-        .fail { background-color: #c81a29; }
+        th { background-color: #f4f4f4; }
+        .pass { background-color: #d4edda; }
+        .fail { background-color: #f8d7da; }
     </style>
 </head>
 <body>
     <h1>API Load Test Report</h1>
-    <p>Date: 2025-01-13</p>
-    <table>
-        <tr>
-            <th>Endpoint</th>
-            <th>Average Response Time (ms)</th>
-            <th>95th Percentile (ms)</th>
-            <th>Status</th>
-        </tr>
-        <tr class="pass">
-            <td>/api/v1/Books</td>
-            <td>450</td>
-            <td>750</td>
-            <td>PASS</td>
-        </tr>
-        <tr class="pass">
-            <td>/api/v1/Users</td>
-            <td>580</td>
-            <td>870</td>
-            <td>PASS</td>
-        </tr>
-        <tr class="pass">
-            <td>/api/v1/Activities</td>
-            <td>530</td>
-            <td>830</td>
-            <td>PASS</td>
-        </tr>
-    </table>
-    <p>All endpoints met the performance thresholds.</p>
+    <p><strong>Date of Execution:</strong> 14.01.2025 г., 16:33:46 ч.</p>
+    
+      <h2>Endpoint: Authors</h2>
+      <table>
+          <tr>
+              <th>Metric</th>
+              <th>Value</th>
+          </tr>
+          <tr>
+              <td>Average Response Time (ms)</td>
+              <td>188.79</td>
+          </tr>
+          <tr>
+              <td>95th Percentile (ms)</td>
+              <td>602.20</td>
+          </tr>
+          <tr>
+              <td>Max Response Time (ms)</td>
+              <td>807.06</td>
+          </tr>
+          <tr>
+              <td>Error Rate (%)</td>
+              <td>0%</td>
+          </tr>
+          <tr class="pass">
+              <td>Status</td>
+              <td>PASS</td>
+          </tr>
+      </table>
+      <hr>
+    
+      <h2>Endpoint: Books</h2>
+      <table>
+          <tr>
+              <th>Metric</th>
+              <th>Value</th>
+          </tr>
+          <tr>
+              <td>Average Response Time (ms)</td>
+              <td>239.54</td>
+          </tr>
+          <tr>
+              <td>95th Percentile (ms)</td>
+              <td>624.23</td>
+          </tr>
+          <tr>
+              <td>Max Response Time (ms)</td>
+              <td>785.20</td>
+          </tr>
+          <tr>
+              <td>Error Rate (%)</td>
+              <td>0%</td>
+          </tr>
+          <tr class="pass">
+              <td>Status</td>
+              <td>PASS</td>
+          </tr>
+      </table>
+      <hr>
+    
+      <h2>Endpoint: Users</h2>
+      <table>
+          <tr>
+              <th>Metric</th>
+              <th>Value</th>
+          </tr>
+          <tr>
+              <td>Average Response Time (ms)</td>
+              <td>48.25</td>
+          </tr>
+          <tr>
+              <td>95th Percentile (ms)</td>
+              <td>61.93</td>
+          </tr>
+          <tr>
+              <td>Max Response Time (ms)</td>
+              <td>84.75</td>
+          </tr>
+          <tr>
+              <td>Error Rate (%)</td>
+              <td>0%</td>
+          </tr>
+          <tr class="pass">
+              <td>Status</td>
+              <td>PASS</td>
+          </tr>
+      </table>
+      <hr>
+    
 </body>
 </html>

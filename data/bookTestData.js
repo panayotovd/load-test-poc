@@ -1,4 +1,3 @@
-// 📂 data/bookTestData.json
 [
     {
       "id": 1,

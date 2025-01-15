@@ -1,4 +1,3 @@
-// 📂 tests/load/loadTestUsers.js
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { BASE_URL } from '../../utils/envLoader.js';

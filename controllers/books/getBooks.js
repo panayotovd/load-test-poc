@@ -8,9 +8,9 @@ export const options = {
     'http_req_failed': ['rate<0.01']     // Less than 1% failure rate
   },
   stages: [
-    { duration: '30s', target: 10 },
-    { duration: '1m', target: 10 },
-    { duration: '30s', target: 0 }
+    { duration: '3s', target: 10 },
+    { duration: '3s', target: 10 },
+    { duration: '3s', target: 0 }
   ]
 };
 

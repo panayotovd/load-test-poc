@@ -1,8 +1,7 @@
-// 📂 scripts/compareResults.js
-const fs = require('fs');
+import { readFileSync } from 'fs';
 
-const baseline = JSON.parse(fs.readFileSync('./results/baseline.json'));
-const latestResults = JSON.parse(fs.readFileSync('./results/latestResults.json'));
+const baseline = JSON.parse(readFileSync('./results/baseline.json'));
+const latestResults = JSON.parse(readFileSync('./results/latestResults.json'));
 
 let isPass = true;
 

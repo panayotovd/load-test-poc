@@ -1,4 +1,3 @@
-// 📂 scripts/initBaseline.js
 const initialBaseline = {
     endpoints: {
       "/api/v1/Books": {

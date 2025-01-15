@@ -1,4 +1,3 @@
-// 📂 scripts/updateBaseline.js
 const latestData = JSON.parse(fs.readFileSync('./results/latestResults.json'));
 const updatedBaseline = {
   endpoints: {

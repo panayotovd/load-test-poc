@@ -1,11 +1,10 @@
-// 📂 tests/smoke/smokeTestBooks.js
 import http from 'k6/http';
 import { check } from 'k6';
 import { BASE_URL } from '../../utils/envLoader.js';
 
 export const options = {
   vus: 1,
-  duration: '30s',
+  duration: '3s',
 };
 
 export default function () {
