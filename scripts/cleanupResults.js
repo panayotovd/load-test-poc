@@ -19,7 +19,7 @@ try {
     const fullPath = path.join(resultsDir, file);
 
     // If it ends with Results.json and is NOT in keepList, delete
-    if (file.endsWith('Results.json') && !keepList.includes(file)) {
+    if (file.endsWith('results.json') && !keepList.includes(file)) {
       fs.unlinkSync(fullPath);
       console.log(`Deleted old results file: ${file}`);
     }

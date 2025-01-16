@@ -3,7 +3,7 @@ import { check } from 'k6';
 import { BASE_URL } from '../../utils/envLoader.js';
 
 export const options = {
-  vus: 1,
+  vus: 33,
   duration: '3s',
 };
 

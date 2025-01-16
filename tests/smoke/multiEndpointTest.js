@@ -5,17 +5,16 @@ import { textSummary } from 'https://jslib.k6.io/k6-summary/0.0.1/index.js';
 export const options = {
   scenarios: {
     booksScenario: {
-      executor: 'shared-iterations',
+      executor: 'per-vu-iterations',
       exec: 'testBooks',
-      vus: 1,
-      iterations: 3,
+      vus: 300,
+      iterations: 400
     },
     authorsScenario: {
-      executor: 'shared-iterations',
+      executor: 'per-vu-iterations',
       exec: 'testAuthors',
-      vus: 1,
-      iterations: 3,
-      startTime: '3s', // start after books scenario
+      vus: 300,
+      iterations: 400
     },
   },
   thresholds: {
@@ -44,20 +43,9 @@ export function testAuthors() {
 // We write scenario-specific JSON files (e.g. BooksResults, AuthorsResults).
 export function handleSummary(data) {
   return {
-    // Standard console output
-    'stdout': textSummary(data, { indent: ' ', enableColors: true }),
-
-    // Separate JSON for each scenario
-    '../../results/BooksResults.json': JSON.stringify(
-      filterScenarioData(data, 'booksScenario'),
-      null,
-      2
-    ),
-    '../../results/AuthorsResults.json': JSON.stringify(
-      filterScenarioData(data, 'authorsScenario'),
-      null,
-      2
-    ),
+    'results/books_results.json': JSON.stringify(data),
+    'results/authors_results.json': JSON.stringify(data),
+    stdout: textSummary(data, { indent: ' ', enableColors: true }),
   };
 }
 

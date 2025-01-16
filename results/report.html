@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,15 +9,13 @@
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
         th { background-color: #f4f4f4; }
-        .pass { background-color: #d4edda; }
-        .fail { background-color: #f8d7da; }
     </style>
 </head>
 <body>
-    <h1>API Load Test Report</h1>
-    <p><strong>Date of Execution:</strong> 14.01.2025 г., 16:33:46 ч.</p>
+    <h1>Books API Load Test Report</h1>
+    <p><strong>Date of Execution:</strong> 16.01.2025 г., 16:40:36 ч.</p>
     
-      <h2>Endpoint: Authors</h2>
+      <h2>Endpoint: createBooks</h2>
       <table>
           <tr>
               <th>Metric</th>
@@ -24,15 +23,15 @@
           </tr>
           <tr>
               <td>Average Response Time (ms)</td>
-              <td>188.79</td>
+              <td>135.53</td>
           </tr>
           <tr>
               <td>95th Percentile (ms)</td>
-              <td>602.20</td>
+              <td>201.80</td>
           </tr>
           <tr>
               <td>Max Response Time (ms)</td>
-              <td>807.06</td>
+              <td>209.17</td>
           </tr>
           <tr>
               <td>Error Rate (%)</td>
@@ -45,7 +44,7 @@
       </table>
       <hr>
     
-      <h2>Endpoint: Books</h2>
+      <h2>Endpoint: createBook</h2>
       <table>
           <tr>
               <th>Metric</th>
@@ -53,15 +52,15 @@
           </tr>
           <tr>
               <td>Average Response Time (ms)</td>
-              <td>239.54</td>
+              <td>97.48</td>
           </tr>
           <tr>
               <td>95th Percentile (ms)</td>
-              <td>624.23</td>
+              <td>178.80</td>
           </tr>
           <tr>
               <td>Max Response Time (ms)</td>
-              <td>785.20</td>
+              <td>422.32</td>
           </tr>
           <tr>
               <td>Error Rate (%)</td>
@@ -74,7 +73,7 @@
       </table>
       <hr>
     
-      <h2>Endpoint: Users</h2>
+      <h2>Endpoint: deleteBooks</h2>
       <table>
           <tr>
               <th>Metric</th>
@@ -82,15 +81,102 @@
           </tr>
           <tr>
               <td>Average Response Time (ms)</td>
-              <td>48.25</td>
+              <td>135.53</td>
           </tr>
           <tr>
               <td>95th Percentile (ms)</td>
-              <td>61.93</td>
+              <td>201.80</td>
           </tr>
           <tr>
               <td>Max Response Time (ms)</td>
-              <td>84.75</td>
+              <td>209.17</td>
+          </tr>
+          <tr>
+              <td>Error Rate (%)</td>
+              <td>0%</td>
+          </tr>
+          <tr class="pass">
+              <td>Status</td>
+              <td>PASS</td>
+          </tr>
+      </table>
+      <hr>
+    
+      <h2>Endpoint: deleteBook</h2>
+      <table>
+          <tr>
+              <th>Metric</th>
+              <th>Value</th>
+          </tr>
+          <tr>
+              <td>Average Response Time (ms)</td>
+              <td>97.48</td>
+          </tr>
+          <tr>
+              <td>95th Percentile (ms)</td>
+              <td>178.80</td>
+          </tr>
+          <tr>
+              <td>Max Response Time (ms)</td>
+              <td>422.32</td>
+          </tr>
+          <tr>
+              <td>Error Rate (%)</td>
+              <td>0%</td>
+          </tr>
+          <tr class="pass">
+              <td>Status</td>
+              <td>PASS</td>
+          </tr>
+      </table>
+      <hr>
+    
+      <h2>Endpoint: getAllBooks</h2>
+      <table>
+          <tr>
+              <th>Metric</th>
+              <th>Value</th>
+          </tr>
+          <tr>
+              <td>Average Response Time (ms)</td>
+              <td>135.53</td>
+          </tr>
+          <tr>
+              <td>95th Percentile (ms)</td>
+              <td>201.80</td>
+          </tr>
+          <tr>
+              <td>Max Response Time (ms)</td>
+              <td>209.17</td>
+          </tr>
+          <tr>
+              <td>Error Rate (%)</td>
+              <td>0%</td>
+          </tr>
+          <tr class="pass">
+              <td>Status</td>
+              <td>PASS</td>
+          </tr>
+      </table>
+      <hr>
+    
+      <h2>Endpoint: getBookById</h2>
+      <table>
+          <tr>
+              <th>Metric</th>
+              <th>Value</th>
+          </tr>
+          <tr>
+              <td>Average Response Time (ms)</td>
+              <td>135.53</td>
+          </tr>
+          <tr>
+              <td>95th Percentile (ms)</td>
+              <td>201.80</td>
+          </tr>
+          <tr>
+              <td>Max Response Time (ms)</td>
+              <td>209.17</td>
           </tr>
           <tr>
               <td>Error Rate (%)</td>

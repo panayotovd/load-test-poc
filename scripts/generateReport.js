@@ -4,10 +4,10 @@ const path = require('path');
 const executionDate = new Date().toLocaleString();
 let reportSections = '';
 
-// Dynamically find all result JSON files in the results folder, excluding latestResults.json
+// Dynamically find all Books result JSON files in the results folder
 function getResultFiles(dir) {
   return fs.readdirSync(dir)
-    .filter(file => file.endsWith('Results.json') && file !== 'latestResults.json')
+    .filter(file => file.endsWith('_results.json'))
     .map(file => path.join(dir, file));
 }
 
@@ -21,16 +21,14 @@ if (resultFiles.length === 0) {
 resultFiles.forEach(filePath => {
   try {
     const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    const endpointName = path.basename(filePath, 'Results.json');
+    const endpointName = path.basename(filePath, '_results.json');
 
-    // Safely handle missing or undefined metrics
-    const avgResponseTime = data.metrics?.http_req_duration?.avg ?? 'N/A';
-    const percentile95 = data.metrics?.http_req_duration?.['p(95)'] ?? 'N/A';
-    const maxResponseTime = data.metrics?.http_req_duration?.max ?? 'N/A';
+    const avgResponseTime = data.metrics?.http_req_duration?.values.avg;
+    const percentile95 = data.metrics?.http_req_duration?.values['p(95)'] ?? 'N/A';
+    const maxResponseTime = data.metrics?.http_req_duration?.values.max ?? 'N/A';
     const errorRateRaw = data.metrics?.http_req_failed?.rate;
     const errorRate = isNaN(errorRateRaw) || errorRateRaw === undefined ? 0 : (errorRateRaw * 100).toFixed(2);
 
-    // Determine pass/fail based on error rate
     const status = errorRate <= 1 ? 'PASS' : 'FAIL';
     const statusClass = errorRate <= 1 ? 'pass' : 'fail';
 
@@ -81,12 +79,10 @@ const reportHtml = `
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
         th { background-color: #f4f4f4; }
-        .pass { background-color: #d4edda; }
-        .fail { background-color: #f8d7da; }
     </style>
 </head>
 <body>
-    <h1>API Load Test Report</h1>
+    <h1>Books API Load Test Report</h1>
     <p><strong>Date of Execution:</strong> ${executionDate}</p>
     ${reportSections}
 </body>
@@ -95,4 +91,4 @@ const reportHtml = `
 
 // Write the dynamic report to an HTML file
 fs.writeFileSync('./results/report.html', reportHtml);
-console.log('📊 Dynamic HTML report generated successfully for all endpoints.');
+console.log('📊 Dynamic HTML report generated successfully for all Books operations.');
